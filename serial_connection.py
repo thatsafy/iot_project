@@ -6,9 +6,7 @@ import serial, pymysql, datetime
 ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
 
 # SQL connections, only have one uncommented at a time
-#conn = pymysql.connect(host='localhost', user='pi_user', passwd='group9', db='pi_temps')
-conn = pymysql.connect(host='80.220.230.223', user='pi_user', passwd='group9', db='pi_temps')
-#conn = pymysql.connect(host='80.220.230.223', user='pi_user', passwd='group9', db='pi_temps')
+conn = pymysql.connect(host='ADDRESS', user='USER', passwd='PASSWORD', db='DATABASE')
 cur = conn.cursor()
 
 
@@ -20,7 +18,7 @@ def send_to_mysql(x):
     timestamp = date_time[1].split('.')[0] + '","'
 
     # construct the message for sql insertion
-    message = 'INSERT INTO pi_data (Date,Time,Temps,Light) VALUES("'
+    message = 'INSERT INTO TABLE_NAME (Column1,Column2,Column3,Column4) VALUES("'
     message += date
     message += timestamp
     message += x[0] + '","'
